@@ -24,6 +24,7 @@ class _HistoryScreenState extends State<HistoryScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    controller.loadImageHistory();
   }
 
   @override
@@ -43,6 +44,10 @@ class _HistoryScreenState extends State<HistoryScreen>
 
       final list = controller.getListByType(type);
       if (list.isEmpty) {
+        Future.delayed(Duration(seconds: 3),(){
+          controller.loadImageHistory();
+          CircularProgressIndicator(color: Colors.deepPurple);
+        });
         return const Center(child: Text('No history found.'));
       }
 
