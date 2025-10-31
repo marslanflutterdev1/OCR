@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+
       title: 'AI OCR',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

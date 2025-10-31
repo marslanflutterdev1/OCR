@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: GridView.count(
+                padding: EdgeInsets.symmetric(horizontal: 4, vertical: 10),
                 crossAxisCount: 2,
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0,

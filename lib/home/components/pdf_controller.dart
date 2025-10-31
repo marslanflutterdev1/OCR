@@ -29,9 +29,7 @@ class PdfController extends GetxController {
   Future<void> createPdf() async {
     if (pdfImages.isEmpty) {
       Get.snackbar("Error", "Please select at least one image",
-          backgroundColor: Colors.black,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 10));
+      );
       return;
     }
 
@@ -81,16 +79,12 @@ class PdfController extends GetxController {
 
       setIsLoading = false;
       Get.snackbar("Success", "PDF saved successfully!",
-          backgroundColor: Colors.black,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 10));
+      );
       await OpenFilex.open(file.path);
     } catch (e) {
       setIsLoading = false;
       Get.snackbar("Error", "Failed to create PDF: $e",
-          backgroundColor: Colors.black,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 10));
+      );
     }
   }
 

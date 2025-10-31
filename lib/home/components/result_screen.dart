@@ -14,7 +14,8 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
-  final controller = Get.put(ResultController(), permanent: true);
+
+  final ResultController controller = Get.put(ResultController(), permanent: true);
 
   @override
   void initState() {
@@ -50,8 +51,8 @@ class _ResultScreenState extends State<ResultScreen> {
         if (controller.isLoading) {
           return const Center(
               child: CircularProgressIndicator(
-            color: Colors.deepPurple,
-          ));
+                color: Colors.deepPurple,
+              ));
         }
         if (controller.results.isEmpty) {
           return const Center(child: Text('No results found.'));
@@ -66,12 +67,11 @@ class _ResultScreenState extends State<ResultScreen> {
             String fileSize = fileSizeInBytes.readableFileSize();
             log('File size: $fileSize');
 
-            // History is saved in the ResultController after processing to avoid overwriting previous entries.
-
             return Card(
               elevation: 3,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(10),
+                side: const BorderSide(color: Colors.deepPurple, width: 1.5),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,24 +100,23 @@ class _ResultScreenState extends State<ResultScreen> {
                     subtitle: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 400),
                       child: (controller.isLoading == true ||
-                              result.text.trim().isEmpty)
+                          result.text.trim().isEmpty)
                           ? const LinearProgressIndicator(
-                              color: Colors.deepPurple,
-                              minHeight: 3,
-                            )
+                        color: Colors.deepPurple,
+                        minHeight: 3,
+                      )
                           : Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                fileSize,
-                                textAlign: TextAlign.start,
-                                style: textTheme.bodySmall?.copyWith(
-                                  color: Colors.grey.shade600,
-                                ),
-                              ),
-                            ),
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          fileSize,
+                          textAlign: TextAlign.start,
+                          style: textTheme.bodySmall?.copyWith(
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  // Hide result text while still loading or if text is empty
                   if (!(controller.isLoading == true ||
                       result.text.trim().isEmpty))
                     Padding(
@@ -125,6 +124,24 @@ class _ResultScreenState extends State<ResultScreen> {
                           horizontal: 20, vertical: 8),
                       child: Text(result.text, style: textTheme.bodyMedium),
                     ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          onPressed: () => controller.copyText(result.text),
+                          icon: Image.asset('assets/images/copy_icon.png', height: 24, width: 24,
+                          )),
+                      IconButton(
+                          onPressed: () => controller.downloadText(result),
+                          icon: Image.asset('assets/images/download_icon.png',
+                              height: 24, width: 24)),
+                      IconButton(
+                          onPressed: () => controller.shareText(result.text),
+                          icon: Image.asset('assets/images/share_icon.png',
+                              height: 24, width: 24))
+                    ],
+                  ),
+                  SizedBox(height: 5),
                 ],
               ),
             );

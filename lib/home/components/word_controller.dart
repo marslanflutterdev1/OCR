@@ -36,7 +36,7 @@ class WordController extends GetxController {
   Future<void> createDocx() async {
     if (docImages.isEmpty) {
       Get.snackbar('Error', 'Please select at least one image',
-          backgroundColor: Colors.black, colorText: Colors.white);
+      );
       return;
     }
 
@@ -226,12 +226,12 @@ class WordController extends GetxController {
 
       setIsLoading = false;
       Get.snackbar('Success', 'DOCX saved successfully!',
-          backgroundColor: Colors.black, colorText: Colors.white);
+      );
       await OpenFilex.open(outFile.path);
     } catch (e) {
       setIsLoading = false;
       Get.snackbar('Error', 'Failed to create DOCX: $e',
-          backgroundColor: Colors.black, colorText: Colors.white);
+      );
     }
   }
 }

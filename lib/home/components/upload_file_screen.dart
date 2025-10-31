@@ -1,10 +1,10 @@
 import 'dart:developer';
-import 'package:ai_ocr/home/components/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ai_ocr/home/home_controller.dart';
 import '../../widgets/custom_button.dart';
 import 'items_list.dart';
+import 'result_screen.dart';
 
 class UploadFileScreen extends StatelessWidget {
   UploadFileScreen({super.key});
@@ -156,8 +156,7 @@ class UploadFileScreen extends StatelessWidget {
                 onPressed: () {
                   if (hasSelectedImages) {
                     _submitFiles(context);
-                    Get.to(() =>
-                        ResultScreen(imageList: controller.selectedImages));
+                    Get.to(() => ResultScreen(imageList: controller.selectedImages));
                   } else {
                     _unsubmitFiles(context);
                   }
@@ -246,7 +245,7 @@ class UploadFileScreen extends StatelessWidget {
     final selectedCount = controller.selectedImages.length;
     log('List of selected images: $selectedCount');
     Get.snackbar('Success', '$selectedCount files submitted successfully!',
-        backgroundColor: Colors.black, colorText: Colors.white);
+    );
 
     // Optional: Clear selection after submit
     // controller.clearSelection();
@@ -255,7 +254,7 @@ class UploadFileScreen extends StatelessWidget {
   void _unsubmitFiles(BuildContext context) {
     Get.snackbar('Select Image',
         'No files submitted!.\nPlease select at least one file.',
-        backgroundColor: Colors.black, colorText: Colors.white);
+    );
 
     // Optional: Clear selection after submit
     // controller.clearSelection();

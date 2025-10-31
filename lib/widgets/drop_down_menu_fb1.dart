@@ -37,26 +37,26 @@ class _DropDownMenuFb1State extends State<DropDownMenuFb1> {
           )
         ),
         const PopupMenuDivider(),
-        PopupMenuItem(
-          child: ListTile(
-            leading: Text(
-              'Open',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-            ),
-            trailing: const Icon(Icons.open_with, color: Colors.deepPurple),
-            onTap: () async {
-              try {
-                final list = controller.getListByType(widget.type);
-                final item = list[widget.index!];
-                final path = item['path'] ?? '';
-                if (path.isNotEmpty && File(path).existsSync()) {
-                  await OpenFilex.open(path);
-                }
-              } catch (_) {}
-              Get.back();
-            },
-          ),
-        ),
+        // PopupMenuItem(
+        //   child: ListTile(
+        //     leading: Text(
+        //       'Open',
+        //       style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        //     ),
+        //     trailing: const Icon(Icons.open_with, color: Colors.deepPurple),
+        //     onTap: () async {
+        //       try {
+        //         final list = controller.getListByType(widget.type);
+        //         final item = list[widget.index!];
+        //         final path = item['path'] ?? '';
+        //         if (path.isNotEmpty && File(path).existsSync()) {
+        //           await OpenFilex.open(path);
+        //         }
+        //       } catch (_) {}
+        //       Get.back();
+        //     },
+        //   ),
+        // ),
         PopupMenuItem(
             child: ListTile(
               leading: Text(
